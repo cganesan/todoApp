@@ -2,11 +2,19 @@ const express = require('express');
 const app = express();
 const port = 8000;
 
+
+app.use('/static', express.static('common'));
+app.use(express.urlencoded({ extended: true }));
+
 app.get('/', (req, res)=>{
-    res.send('<h1>Hello World</h1>')
+    res.render('todo.ejs', {
+        title:"My ToDO App"
+    });
 });
 
-
+app.post('/', (req, res)=>{
+    console.log(req.body);
+});
 app.set('view engine', 'ejs');
 
 
